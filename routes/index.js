@@ -2,11 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/api/test', function(req, res, next) {
-  res.status(200).json({
-    message: 'Data received successfully!',
-    yourData: req.body
-  })
+router.get('/api/test', function (req, res, next) {
+  res.set('Content-Type', 'application/xml');
+    const xmlResponse = `
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Response>
+        <Message>We got your message, thank you!</Message>
+    </Response>
+  `;
+  res.send(xmlResponse)
 });
 
 module.exports = router;
